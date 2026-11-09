@@ -1,15 +1,15 @@
-bind("F1", "toggle_FOG()")
-bind("F2", "GiveResources()")
+bind("F1", "toggle_fog()")
+bind("F2", "give_resources()")
 bind("F3", "switch_player_control()")
 bind("F4", "setsimrate(5)")
 bind("F5", "setsimrate(8)")
 bind("F6", "setsimrate(40)")
-bind("F7", "toggle_FOW()")
-bind("F8", "toggle_screenmode()")
+bind("F7", "toggle_fow()")
+bind("F8", "toggle_ui_visibility()")
 bind("F9", "toggle_instant_build()")
 
 local fow_mode = false
-local screen_mode = true
+local ui_visible = true
 local instant_build = false
 
 local RESOURCES = {
@@ -26,11 +26,11 @@ local RESOURCE_AMOUNT = {
     [RT_Faith] = 10000,
 }
 
-function toggle_FOG()
+function toggle_fog()
     fog_toggle()
 end
 
-function GiveResources()
+function give_resources()
     local player = World_GetPlayerAt(Tut_GetLocalPlayerIndex())
     if not player then return end
 
@@ -51,7 +51,7 @@ function switch_player_control()
     end
 end
 
-function toggle_FOW()
+function toggle_fow()
     fow_mode = not fow_mode
 
     if fow_mode then
@@ -61,10 +61,10 @@ function toggle_FOW()
     end
 end
 
-function toggle_screenmode()
-    screen_mode = not screen_mode
+function toggle_ui_visibility()
+    ui_visible = not ui_visible
 
-    if screen_mode then
+    if ui_visible then
         taskbar_show()
         cursor_show()
         W40k_EnableSelectionUI(true)
