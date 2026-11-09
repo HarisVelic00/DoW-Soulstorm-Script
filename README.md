@@ -68,8 +68,8 @@ New races and resource amounts can be added by modifying these tables.
 
    `Steam\steamapps\common\Dawn of War - Definitive Edition`
 
-3. Load the script using the supported scripting environment.
-4. Use the assigned keyboard shortcuts in-game.
+3. Launch the game. The script loads automatically.
+5. Use the assigned keyboard shortcuts in-game.
 
 ## Notes
 
