@@ -1,6 +1,6 @@
 # Dawn of War – Gameplay Utility Script
 
-A lightweight Lua script for **Warhammer 40,000: Dawn of War** that adds convenient gameplay utilities through keyboard shortcuts.
+A lightweight Lua script for **Warhammer 40,000: Dawn of War – Definitive Edition** that adds convenient gameplay utilities through keyboard shortcuts.
 
 ## Features
 
@@ -9,7 +9,7 @@ A lightweight Lua script for **Warhammer 40,000: Dawn of War** that adds conveni
 - **Player Control Switch** – Switch between player and CPU control.
 - **Simulation Speed Control** – Quickly change the simulation speed.
 - **Fog of War Toggle** – Reveal the map or restore the fog of war.
-- **Screen Mode Toggle** – Show or hide the taskbar and in-game messages.
+- **UI Visibility Toggle** – Show or hide the taskbar, cursor, and unit/building selection indicators.
 - **Instant Build Toggle** – Enable or disable instant construction.
 
 ## Keyboard Shortcuts
@@ -23,7 +23,7 @@ A lightweight Lua script for **Warhammer 40,000: Dawn of War** that adds conveni
 | `F5` | Set Simulation Speed to 8  |
 | `F6` | Set Simulation Speed to 40 |
 | `F7` | Toggle Fog of War          |
-| `F8` | Toggle Screen Mode         |
+| `F8` | Toggle UI Visibility       |
 | `F9` | Toggle Instant Build       |
 
 ## Resource System
@@ -69,7 +69,7 @@ New races and resource amounts can be added by modifying these tables.
    `Steam\steamapps\common\Dawn of War - Definitive Edition`
 
 3. Launch the game. The script loads automatically.
-5. Use the assigned keyboard shortcuts in-game.
+4. Use the assigned keyboard shortcuts in-game.
 
 ## Notes
 
