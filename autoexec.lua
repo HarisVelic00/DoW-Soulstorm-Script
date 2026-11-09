@@ -66,8 +66,12 @@ function toggle_screenmode()
 
     if screen_mode then
         taskbar_show()
+        cursor_show()
+        W40k_EnableSelectionUI(true)
     else
         taskbar_hide()
+        cursor_hide()
+        W40k_EnableSelectionUI(false)
     end
 
     message_hide()
