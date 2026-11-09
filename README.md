@@ -1,36 +1,78 @@
-# DoW-Soulstorm-Script
-Custom script for Dawn of War: Soulstorm with key bindings
+# Dawn of War – Gameplay Utility Script
 
-## Key Binding Explanations:
+A lightweight Lua script for **Warhammer 40,000: Dawn of War** that adds convenient gameplay utilities through keyboard shortcuts.
 
-- **F1: Toggle Fog of War**
-  - **Function:** `toggle_FOG()`
-  - **Description:** Toggles the visibility of the fog on the map.
+## Features
 
-- **F2: Give Resources**
-  - **Function:** `GiveResources()`
-  - **Description:** Provides resources to the current player. If the player's race is Necrons, they receive 100,000 Power. For all other races, they receive 100,000 Requisition and 100,000 Power.
+- **Fog Toggle** – Toggle the game's fog effect.
+- **Resource Generator** – Instantly grant resources based on the player's race.
+- **Player Control Switch** – Switch between player and CPU control.
+- **Simulation Speed Control** – Quickly change the simulation speed.
+- **Fog of War Toggle** – Reveal the map or restore the fog of war.
+- **Screen Mode Toggle** – Show or hide the taskbar and in-game messages.
+- **Instant Build Toggle** – Enable or disable instant construction.
 
-- **F3: Switch Player Control**
-  - **Function:** `switch_player_control()`
-  - **Description:** Switches control between the local player and the AI.
+## Keyboard Shortcuts
 
-- **F4: Set Game Speed to 5**
-  - **Function:** `setsimrate(5)`
-  - **Description:** Sets the game speed to a slow rate.
+| Key  | Action                     |
+| ---- | -------------------------- |
+| `F1` | Toggle Fog                 |
+| `F2` | Give Resources             |
+| `F3` | Switch Player Control      |
+| `F4` | Set Simulation Speed to 5  |
+| `F5` | Set Simulation Speed to 8  |
+| `F6` | Set Simulation Speed to 40 |
+| `F7` | Toggle Fog of War          |
+| `F8` | Toggle Screen Mode         |
+| `F9` | Toggle Instant Build       |
 
-- **F5: Set Game Speed to 8**
-  - **Function:** `setsimrate(8)`
-  - **Description:** Adjusts the game speed to a normal rate.
+## Resource System
 
-- **F6: Set Game Speed to 40**
-  - **Function:** `setsimrate(40)`
-  - **Description:** Increases the game speed to a fast rate.
+The resource generator automatically detects the player's race and grants the appropriate resources.
 
-- **F7: Toggle Fog of War Visibility**
-  - **Function:** `toggle_FOW()`
-  - **Description:** Toggles the Fog of War on and off, revealing the map.
+| Race              | Resources                 |
+| ----------------- | ------------------------- |
+| Necrons           | Power                     |
+| Dark Eldar        | Requisition, Power, Souls |
+| Sisters of Battle | Requisition, Power, Faith |
+| All other races   | Requisition, Power        |
 
-- **F8: Toggle Screen Mode**
-  - **Function:** `toggle_screenmode()`
-  - **Description:** Switches between minimal and full interface modes.
+### Resource Amounts
+
+| Resource    |  Amount |
+| ----------- | ------: |
+| Requisition | 100,000 |
+| Power       | 100,000 |
+| Souls       |  10,000 |
+| Faith       |  10,000 |
+
+Resource amounts can be customized in the `RESOURCE_AMOUNT` table.
+
+## Configuration
+
+The script uses two tables to manage resources:
+
+- `RESOURCES` defines which resources each race receives.
+- `RESOURCE_AMOUNT` defines the amount granted for each resource.
+
+New races and resource amounts can be added by modifying these tables.
+
+## Requirements
+
+- Warhammer 40,000: Dawn of War – Definitive Edition
+
+## Installation
+
+1. Clone or download this repository.
+2. Place the Lua script in the game's directory, usually:
+
+   `Steam\steamapps\common\Dawn of War - Definitive Edition`
+
+3. Load the script using the supported scripting environment.
+4. Use the assigned keyboard shortcuts in-game.
+
+## Notes
+
+- Resource amounts are configurable.
+- Simulation speed values are predefined through the keyboard bindings.
+- Toggle functions assume their initial states match the game's initial settings.

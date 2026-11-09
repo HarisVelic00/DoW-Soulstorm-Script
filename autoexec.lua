@@ -1,4 +1,3 @@
--- Key bindings
 bind("F1", "toggle_FOG()")
 bind("F2", "GiveResources()")
 bind("F3", "switch_player_control()")
@@ -7,30 +6,44 @@ bind("F5", "setsimrate(8)")
 bind("F6", "setsimrate(40)")
 bind("F7", "toggle_FOW()")
 bind("F8", "toggle_screenmode()")
+bind("F9", "toggle_instant_build()")
 
--- Toggle Fog
+local fow_mode = false
+local screen_mode = true
+local instant_build = false
+
+local RESOURCES = {
+    default = {RT_Requisition, RT_Power},
+    necron_race = {RT_Power},
+    dark_eldar_race = {RT_Requisition, RT_Power, RT_Souls},
+    sisters_race = {RT_Requisition, RT_Power, RT_Faith},
+}
+
+local RESOURCE_AMOUNT = {
+    [RT_Requisition] = 100000,
+    [RT_Power] = 100000,
+    [RT_Souls] = 10000,
+    [RT_Faith] = 10000,
+}
+
 function toggle_FOG()
     fog_toggle()
 end
 
--- Give resources to the local player
 function GiveResources()
-    local localPlayerIndex = Tut_GetLocalPlayerIndex()
-    local player = World_GetPlayerAt(localPlayerIndex)
-    if player then
-        local player_race = Player_GetRaceName(player)
-        if player_race == "necron_race" then
-            Player_SetResource(player, RT_Power, 100000)
-        else
-            Player_SetResource(player, RT_Requisition, 100000)
-            Player_SetResource(player, RT_Power, 100000)
-        end
+    local player = World_GetPlayerAt(Tut_GetLocalPlayerIndex())
+    if not player then return end
+
+    local race = Player_GetRaceName(player)
+
+    for _, resource in ipairs(RESOURCES[race] or RESOURCES.default) do
+        Player_SetResource(player, resource, RESOURCE_AMOUNT[resource])
     end
 end
 
--- Switch player control between CPU and player
 function switch_player_control()
     local player = World_GetPlayerAt(Tut_GetLocalPlayerIndex())
+    if not player then return end
     if Cpu_IsCpuPlayer(player) then
         W40k_SwitchToPlayer(player, true)
     else
@@ -38,36 +51,34 @@ function switch_player_control()
     end
 end
 
--- Toggle Fog of War
-fowmode = 0
 function toggle_FOW()
-    if fowmode == 0 then
+    fow_mode = not fow_mode
+
+    if fow_mode then
         FOW_RevealAll()
-        fowmode = 1
     else
         FOW_Reset()
-        fowmode = 0
     end
 end
 
--- Toggle screen mode
-g_ScreenModeSwitch = true
 function toggle_screenmode()
-    if g_ScreenModeSwitch then
-        g_ScreenModeSwitch = false
-        taskbar_hide()
-        message_hide()
-        SS_ToggleModifierEvents(false)
-        ingame_stats_mouseover_toggle(false)
-        ingame_stats_toggle(false)
-        ingame_select_ui_toggle(false)
-    else
-        g_ScreenModeSwitch = true
+    screen_mode = not screen_mode
+
+    if screen_mode then
         taskbar_show()
-        message_show()
-        SS_ToggleModifierEvents(true)
-        ingame_stats_mouseover_toggle(true)
-        ingame_stats_toggle(true)
-        ingame_select_ui_toggle(true)
+    else
+        taskbar_hide()
+    end
+
+    message_hide()
+end
+
+function toggle_instant_build()
+    if instant_build == false then
+        sd_instant_build = 1
+        instant_build = true
+    else
+        sd_instant_build = 0
+        instant_build = false
     end
 end
